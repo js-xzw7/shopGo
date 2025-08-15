@@ -1,7 +1,7 @@
 package svc
 
 import (
-	"admin/internal/config"
+	"shopGo/apps/order/admin/internal/config"
 )
 
 type ServiceContext struct {

@@ -1,0 +1,7 @@
+Name: order.rpc
+ListenOn: 0.0.0.0:8080
+Etcd:
+  Hosts:
+  - 124.222.86.11:2379
+  Key: order.rpc
+DataSource: jsw7:12345678@tcp(124.222.86.11:3306)/orders?parseTime=true
