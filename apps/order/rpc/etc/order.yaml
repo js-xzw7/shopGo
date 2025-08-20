@@ -4,4 +4,8 @@ Etcd:
   Hosts:
   - 124.222.86.11:2379
   Key: order.rpc
-DataSource: jsw7:12345678@tcp(124.222.86.11:3306)/orders?parseTime=true
+DataSource: jsw7:123456@tcp(124.222.86.11:3306)/goshop?parseTime=true
+CacheRedis:
+  - Host: 124.222.86.11:6379
+    Pass:
+    Type: node

@@ -17,8 +17,8 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	conn := sqlx.NewMysql(c.DataSource)
 	return &ServiceContext{
 		Config:         c,
-		OrderModel:     model.NewOrdersModel(conn),
-		OrderItemModel: model.NewOrderitemModel(conn),
-		ShippingModel:  model.NewShippingModel(conn),
+		OrderModel:     model.NewOrdersModel(conn, c.CacheRedis),
+		OrderItemModel: model.NewOrderitemModel(conn, c.CacheRedis),
+		ShippingModel:  model.NewShippingModel(conn, c.CacheRedis),
 	}
 }

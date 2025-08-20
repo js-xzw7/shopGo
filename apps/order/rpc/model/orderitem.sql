@@ -1,4 +1,4 @@
-CREATE TABLE `orderitem` (
+CREATE TABLE `orderItem` (
      `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '订单子表id',
      `order_id` varchar(64) NOT NULL DEFAULT '' COMMENT '订单id',
      `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户id',
