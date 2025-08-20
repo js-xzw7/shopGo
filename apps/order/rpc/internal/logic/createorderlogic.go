@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -31,10 +32,14 @@ func NewCreateOrderLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Creat
 }
 
 func (l *CreateOrderLogic) CreateOrder(in *order.CreateOrderRequest) (*order.CreateOrderResponse, error) {
+	if in.Uid == 0 || in.Pid == 0 {
+		logx.Errorf("CreateOrder 参数不合法 uid:%d pid:%d", in.Uid, in.Pid)
+		return nil, errors.New("参数不合法")
+	}
 	oid := genOrderID(time.Now())
 	err := l.svcCtx.OrderModel.CreateOrder(l.ctx, oid, in.Uid, in.Pid)
 	if err != nil {
-		logx.Errorf("OrderModel.CreateOrder oid:%s uid:%s pid:%d", oid, in.Uid, in.Pid)
+		logx.Errorf("CreateOrder OrderModel.CreateOrder oid:%s uid:%s pid:%d", oid, in.Uid, in.Pid)
 		return nil, status.Errorf(codes.Internal, err.Error())
 	}
 
